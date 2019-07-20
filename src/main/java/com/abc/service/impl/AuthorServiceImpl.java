@@ -28,7 +28,6 @@ import com.abc.service.AuthorService;
 @Service
 public class AuthorServiceImpl implements AuthorService{
 	
-	
 	private AuthorRepository authorRepository;
 	private BCryptPasswordEncoder bCryptPasswordEncoder;
 
@@ -122,7 +121,9 @@ public class AuthorServiceImpl implements AuthorService{
 
 	@Override
 	public List<AuthorResponse> findAuthors(int page, int size) {
-		if(page > 0) page -=1;
+		if(page > 0) {
+			page -=1;
+		}
 		List<AuthorResponse> authorResponses = new ArrayList<>();
 		AuthorResponse authorResponse = null;
 		

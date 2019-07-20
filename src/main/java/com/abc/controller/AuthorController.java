@@ -34,6 +34,8 @@ import com.abc.service.BookService;
 
 
 @RestController //http://localhost:8989/
+//RestController should be changed to Controller if 
+//I want to use JSP view resolver
 public class AuthorController {
 	
 	
