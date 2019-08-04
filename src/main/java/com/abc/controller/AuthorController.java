@@ -8,6 +8,8 @@ import java.util.List;
 
 import javax.validation.Valid;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.hateoas.Resource;
@@ -49,10 +51,8 @@ public class AuthorController {
 		this.bookService = bookService;
 	}
 
-	// ==================
-	// ===   CREATE   ===
-	// ==================	
-	@PostMapping(path="/authors",
+		
+	@PostMapping(path="/author",
 			produces = {
 					MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_JSON_VALUE},
 			consumes = {
@@ -61,9 +61,22 @@ public class AuthorController {
 		return this.authorService.save(author);
 	}
 	
-	// ==================
-	// ===    READ    ===
-	// ==================	
+	@PostMapping(path="/authors",
+			produces = {
+					MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_JSON_VALUE},
+			consumes = {
+					MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_JSON_VALUE})
+	public void saveAuthorsJSONArray(JSONObject jsonObject){
+		JSONArray jsonArray = jsonObject.getJSONArray("authors");
+		Author jsonAuthor;
+		for(int i=0; i<jsonArray.length(); i++) {
+			jsonAuthor = (Author) jsonArray.get(i);
+			this.authorService.save(jsonAuthor);
+		}
+		
+	}
+	
+		
 	@GetMapping(path="/authors/all",
 			produces = {
 					MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE
@@ -72,7 +85,7 @@ public class AuthorController {
 		return this.authorService.findAll();
 	}
 	
-	@GetMapping(path="/authors/id/{id}",
+	@GetMapping(path="/author/id/{id}",
 			produces = {
 					MediaType.APPLICATION_XML_VALUE,
 					MediaType.APPLICATION_JSON_VALUE})
@@ -91,11 +104,8 @@ public class AuthorController {
 		return resource;
 	}
 	
-	// ============================
-	// ===   UPDATE  ADD A BOOK ===
-	// ============================
 	
-	@PostMapping(path="/authors/{id}/book",
+	@PostMapping(path="/author/{id}/book",
 			produces = {
 					MediaType.APPLICATION_XML_VALUE,
 					MediaType.APPLICATION_JSON_VALUE},
@@ -116,10 +126,8 @@ public class AuthorController {
 				.buildAndExpand(book.getId()).toUri();
 		return ResponseEntity.created(location).build();		
 	}
-	// ================================
-	// ===   UPDATE,  DELETE A BOOK ===
-	// ================================
-	@PutMapping(path="/authors/{id}/delete/{bookId}")
+	
+	@PutMapping(path="/author/{id}/delete/{bookId}")
 	public ResponseEntity<Void> deleteBookByUpdate(@PathVariable int id, @PathVariable int bookId){
 		Author author = this.authorService.findById(id);
 		
@@ -135,16 +143,12 @@ public class AuthorController {
 		throw new BookNotFoundException("Book is not available!");
 	}
 	
-	// ==================
-	// ===   DELETE   ===
-	// ==================
-	@DeleteMapping(path="/authors/{id}")
+	
+	@DeleteMapping(path="/author/{id}")
 	public void deleteAuthor(@PathVariable("id") int id){
 		this.authorService.deleteById(id);
 	}
-	// ======================
-	// ===   PAGINATION   ===
-	// ======================
+	
 	
 	@GetMapping(path="/authors/all")
 	public List<AuthorResponse> findAuthors(

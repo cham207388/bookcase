@@ -41,10 +41,7 @@ public class AuthorServiceImpl implements AuthorService{
 	public AuthorServiceImpl() {
 	}
 
-	// ==================
-	// ===   CREATE   ===
-	// ==================
-	
+		
 	@Override
 	public ResponseEntity<AuthorResponse> save(Author author){
 		author.setPassword(bCryptPasswordEncoder.encode(author.getPassword()));
@@ -58,10 +55,6 @@ public class AuthorServiceImpl implements AuthorService{
 		return ResponseEntity.created(location).build();
 				
 	}
-	
-	// ==================
-	// ===    READ    ===
-	// ==================
 	
 	@Override
 	public List<AuthorResponse> findAll(){
@@ -101,9 +94,7 @@ public class AuthorServiceImpl implements AuthorService{
 
 		throw new AuthorNotFoundException("Update not completed");	
 	}
-	// ==================
-	// ===   DELETE   ===
-	// ==================
+	
 	@Override
 	public ResponseEntity<Void> deleteById(int id){
 		this.authorRepository.deleteById(id);
