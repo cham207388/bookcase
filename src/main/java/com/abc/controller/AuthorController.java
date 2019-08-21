@@ -127,7 +127,7 @@ public class AuthorController {
 		return ResponseEntity.created(location).build();		
 	}
 	
-	@PutMapping(path="/author/{id}/delete/{bookId}")
+	@DeleteMapping(path="/author/{id}/book/{bookId}")
 	public ResponseEntity<Void> deleteBookByUpdate(@PathVariable int id, @PathVariable int bookId){
 		Author author = this.authorService.findById(id);
 		
@@ -150,7 +150,7 @@ public class AuthorController {
 	}
 	
 	
-	@GetMapping(path="/authors/all")
+	@GetMapping(path="/authors")
 	public List<AuthorResponse> findAuthors(
 			@RequestParam(value="page", defaultValue="0") int page,
 			@RequestParam(value="limit", defaultValue="5") int limit){

@@ -1,4 +1,4 @@
-/*package com.abc.security;
+package com.abc.security;
 
 import java.io.IOException;
 import java.sql.Date;
@@ -62,8 +62,6 @@ public class AuthenticationFilter extends UsernamePasswordAuthenticationFilter {
 			.compact();
 		
 		response.addHeader(
-				SecurityConstants.HEADER_STRING, SecurityConstants.TOKEN_SECRET+token);
+				SecurityConstants.HEADER_STRING, SecurityConstants.TOKEN_PREFIX+token);
 	}
-
 }
-*/
