@@ -38,9 +38,6 @@ public class BookController {
 		this.authorController = authorController;
 	}
 
-	// ==================
-	// ===    READ    ===
-	// ==================	
 	@GetMapping(path="/authors/books",
 			produces = {
 					MediaType.APPLICATION_XML_VALUE,
@@ -59,7 +56,7 @@ public class BookController {
 		return response;
 	}
  
-	@GetMapping(path="/authors/{id}/books",
+	@GetMapping(path="/author/{id}/books",
 			produces = {
 					MediaType.APPLICATION_XML_VALUE,
 					MediaType.APPLICATION_JSON_VALUE})
@@ -78,7 +75,7 @@ public class BookController {
 		return response;
 	}
 	
-	@GetMapping(path="/books/isbn/{isbn}",
+	@GetMapping(path="/book/isbn/{isbn}",
 			produces = {
 					MediaType.APPLICATION_XML_VALUE,
 					MediaType.APPLICATION_JSON_VALUE})
@@ -102,7 +99,7 @@ public class BookController {
 		return resource;
 	}
 	
-	@GetMapping(path="/books/title/{title}",
+	@GetMapping(path="/book/title/{title}",
 			produces = {
 					MediaType.APPLICATION_XML_VALUE,
 					MediaType.APPLICATION_JSON_VALUE})
