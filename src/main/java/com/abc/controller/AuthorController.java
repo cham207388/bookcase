@@ -58,7 +58,7 @@ public class AuthorController {
 		return this.authorService.saveAll(authors);
 	}
 
-	@GetMapping(path = "/authors/all",
+	@GetMapping(path = "/authors",
 			produces = { MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE })
 	public List<AuthorResponse> getAllAuthors() {
 		return this.authorService.findAll();

@@ -67,7 +67,7 @@ public class Author {
 	private String password;
 	
 	@OneToMany(cascade = CascadeType.ALL,
-			fetch = FetchType.LAZY) //this might change to EAGER
+			fetch = FetchType.EAGER) //this might change to EAGER
 	@JoinColumn(name="author_id")
 	@JsonManagedReference
 	private List<Book> books = new ArrayList<Book>();
