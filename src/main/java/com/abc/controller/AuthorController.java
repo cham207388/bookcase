@@ -8,6 +8,8 @@ import java.util.List;
 
 import javax.validation.Valid;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.hateoas.Resource;
@@ -33,7 +35,7 @@ import com.abc.service.BookService;
 
 @RestController
 public class AuthorController {
-
+	private static final Logger LOGGER = LoggerFactory.getLogger(AuthorController.class);
 	private AuthorService authorService;
 	private BookService bookService;
 
@@ -48,6 +50,7 @@ public class AuthorController {
 			produces = { MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_JSON_VALUE },
 			consumes = { MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_JSON_VALUE })
 	public ResponseEntity<AuthorResponse> save(@Valid @RequestBody Author author) {
+		LOGGER.info("saving an author");
 		return this.authorService.save(author);
 	}
 
@@ -55,18 +58,21 @@ public class AuthorController {
 			produces = { MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_JSON_VALUE }, 
 			consumes = { MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_JSON_VALUE })
 	public ResponseEntity<List<AuthorResponse>> saveAll(List<Author> authors) {
+		LOGGER.info("saving list of authors");
 		return this.authorService.saveAll(authors);
 	}
 
 	@GetMapping(path = "/authors",
 			produces = { MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE })
 	public List<AuthorResponse> getAllAuthors() {
+		LOGGER.info("retrieving all authors");
 		return this.authorService.findAll();
 	}
 
 	@GetMapping(path = "/author/id/{id}", produces = { MediaType.APPLICATION_XML_VALUE,
 			MediaType.APPLICATION_JSON_VALUE })
 	public Resource<AuthorResponse> findById(@PathVariable int id) {
+		LOGGER.info("retrieving an author by id");
 		Author author = this.authorService.findById(id);
 
 		AuthorResponse authorResponse = new AuthorResponse();
@@ -83,7 +89,7 @@ public class AuthorController {
 			produces = { MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_JSON_VALUE },
 			consumes = { MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_JSON_VALUE })
 	public ResponseEntity<Author> saveBook(@PathVariable int id, @RequestBody Book book) {
-
+		LOGGER.info("adding a book to an author via author id");
 		Author author = this.authorService.findById(id);
 
 		book.setAuthor(author);
@@ -96,6 +102,7 @@ public class AuthorController {
 
 	@DeleteMapping(path = "/author/{id}/book/{bookId}")
 	public ResponseEntity<Void> deleteBookByUpdate(@PathVariable int id, @PathVariable int bookId) {
+		LOGGER.info("deleting a book from an author");
 		Author author = this.authorService.findById(id);
 
 		List<Book> books = author.getBooks();
@@ -112,12 +119,14 @@ public class AuthorController {
 
 	@DeleteMapping(path = "/author/{id}")
 	public void deleteAuthor(@PathVariable("id") int id) {
+		LOGGER.info("deleting an author");
 		this.authorService.deleteById(id);
 	}
 
 	@GetMapping(path = "/authors")
 	public List<AuthorResponse> findAuthors(@RequestParam(value = "page", defaultValue = "0") int page,
 			@RequestParam(value = "limit", defaultValue = "5") int limit) {
+		LOGGER.info("implementing pagination");
 		return this.authorService.findAuthors(page, limit);
 	}
 }

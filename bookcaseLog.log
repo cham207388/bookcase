@@ -1,0 +1,6 @@
+[2019-09-02T15:34:25] [org.springframework.boot.StartupInfoLogger] [restartedMain] [50] [INFO ] Starting BookcaseApplication on Alhagie-Bai-Cham with PID 14080 (C:\dev\workspaces\_my-projects\bookcase\target\classes started by cham2 in C:\dev\workspaces\_my-projects\bookcase)
+[2019-09-02T15:34:25] [org.springframework.boot.StartupInfoLogger] [restartedMain] [53] [DEBUG] Running with Spring Boot v2.1.3.RELEASE, Spring v5.1.5.RELEASE
+[2019-09-02T15:34:25] [org.springframework.boot.SpringApplication] [restartedMain] [675] [INFO ] No active profile set, falling back to default profiles: default
+[2019-09-02T15:34:32] [org.springframework.boot.autoconfigure.orm.jpa.JpaBaseConfiguration$JpaWebConfiguration$JpaWebMvcConfiguration] [restartedMain] [236] [WARN ] spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+[2019-09-02T15:34:35] [springfox.documentation.spring.web.readers.parameter.ParameterDataTypeReader] [restartedMain] [87] [WARN ] Trying to infer dataType java.util.List<com.abc.entity.Author>
+[2019-09-02T15:34:35] [org.springframework.boot.StartupInfoLogger] [restartedMain] [59] [INFO ] Started BookcaseApplication in 10.015 seconds (JVM running for 12.542)

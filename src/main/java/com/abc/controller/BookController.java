@@ -39,9 +39,7 @@ public class BookController {
 	}
 
 	@GetMapping(path="/authors/books",
-			produces = {
-					MediaType.APPLICATION_XML_VALUE,
-					MediaType.APPLICATION_JSON_VALUE})
+			produces = {MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_JSON_VALUE})
 	public List<BookResponse> findAll(){
 		List<Book> books = this.bookService.findAll();
 		List<BookResponse> response = new ArrayList<>();
@@ -57,9 +55,7 @@ public class BookController {
 	}
  
 	@GetMapping(path="/author/{id}/books",
-			produces = {
-					MediaType.APPLICATION_XML_VALUE,
-					MediaType.APPLICATION_JSON_VALUE})
+			produces = {MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_JSON_VALUE})
 	public List<BookResponse> findByAuthor(@PathVariable int id) {
 		Author author = this.authorService.findById(id);
 		List<Book> books = author.getBooks();
@@ -76,9 +72,7 @@ public class BookController {
 	}
 	
 	@GetMapping(path="/book/isbn/{isbn}",
-			produces = {
-					MediaType.APPLICATION_XML_VALUE,
-					MediaType.APPLICATION_JSON_VALUE})
+			produces = {MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_JSON_VALUE})
 	public Resource<BookResponse> findByIsbn(@PathVariable String isbn) {
 		Book book = this.bookService.findByIsbn(isbn);
 		BookResponse response = new BookResponse();
@@ -100,9 +94,7 @@ public class BookController {
 	}
 	
 	@GetMapping(path="/book/title/{title}",
-			produces = {
-					MediaType.APPLICATION_XML_VALUE,
-					MediaType.APPLICATION_JSON_VALUE})
+			produces = {MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_JSON_VALUE})
 	public ResponseEntity<BookResponse> findByTitle(@PathVariable String title) {
 		return this.bookService.findByTitle(title);
 	}
