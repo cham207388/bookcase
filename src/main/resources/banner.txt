@@ -6,7 +6,7 @@ ${Ansi.BLUE}         $$$$$$$$$$  $$$$$$$$$$$$  $$$
 ${Ansi.BLUE}         $$$$$$$$$$  $$$$$$$$$$$$  $$$    
 ${Ansi.BLUE}         $$$    $$$  $$$      $$$  $$$
 ${Ansi.BLUE}         $$$    $$$  $$$      $$$  $$$      $$$       
-${Ansi.BLUE}         $$$    $$$  $$$$$$$$$$$$  $$$$$$$$$$$$       
+${Ansi.BLUE}         $$$$$$$$$$  $$$$$$$$$$$$  $$$$$$$$$$$$       
 ${Ansi.BLUE}         $$$$$$$$$$  $$$$$$$$$$$$  $$$$$$$$$$$$
 
 ${Ansi.RED} :: Spring Boot${spring-boot.formatted-version} :: ${Ansi.DEFAULT}
