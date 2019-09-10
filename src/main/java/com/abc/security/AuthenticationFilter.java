@@ -22,10 +22,12 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 
+import static com.abc.security.SecurityConstants.*;
+
 public class AuthenticationFilter extends UsernamePasswordAuthenticationFilter {
 
 	private final AuthenticationManager authenticationManager;
-
+	
 	public AuthenticationFilter(AuthenticationManager authenticationManager) {
 		this.authenticationManager = authenticationManager;
 	}
@@ -57,11 +59,10 @@ public class AuthenticationFilter extends UsernamePasswordAuthenticationFilter {
 		
 		String token = Jwts.builder()
 			.setSubject(userName)
-			.setExpiration(new Date(System.currentTimeMillis() + SecurityConstants.EXPIRATION_TIME))
-			.signWith(SignatureAlgorithm.HS512, SecurityConstants.TOKEN_SECRET)
+			.setExpiration(new Date(System.currentTimeMillis() + EXPIRATION_TIME))
+			.signWith(SignatureAlgorithm.HS512, getTokenSecret())
 			.compact();
 		
-		response.addHeader(
-				SecurityConstants.HEADER_STRING, SecurityConstants.TOKEN_PREFIX+token);
+		response.addHeader(getHeaderString(), TOKEN_PREFIX+token);
 	}
 }

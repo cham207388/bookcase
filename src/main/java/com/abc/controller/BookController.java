@@ -22,7 +22,6 @@ import com.abc.response.BookResponse;
 import com.abc.service.AuthorService;
 import com.abc.service.BookService;
 
-//@CrossOrigin(origins="http://localhost:4200")
 @RestController
 public class BookController {
 	
