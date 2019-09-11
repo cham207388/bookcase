@@ -80,7 +80,7 @@ public class AuthorController {
 		Resource<AuthorResponse> resource = new Resource<AuthorResponse>(authorResponse);
 		ControllerLinkBuilder linkTo = linkTo(methodOn(this.getClass()).getAllAuthors());
 
-		resource.add(linkTo.withRel("all-authors"));
+		resource.add(linkTo.withRel("authors"));
 
 		return resource;
 	}
