@@ -8,6 +8,8 @@ public class SecurityConstants {
 	public final static String POST_URL = "/author";
 	public final static String POST_ALL_URL = "/authors";
 	public final static String GET_URL = "/author";
+	public final static String SWAGGER_API = "/**";
+	public final static String SWAGGER_UI = "/**swagger**";
 	public final static String DELETE_URL = "/author";
 	public final static String PUT_URL = "/author";
 	public final static String GET_ALL_URL = "/authors";

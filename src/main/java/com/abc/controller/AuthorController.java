@@ -78,7 +78,7 @@ public class AuthorController {
 
 		AuthorResponse authorResponse = new AuthorResponse();
 		BeanUtils.copyProperties(author, authorResponse);
-		Resource<AuthorResponse> resource = new Resource<AuthorResponse>(authorResponse);
+		Resource<AuthorResponse> resource = new Resource<>(authorResponse);
 		ControllerLinkBuilder linkTo = linkTo(methodOn(this.getClass()).getAllAuthors());
 
 		resource.add(linkTo.withRel("all-authors"));

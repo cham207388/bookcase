@@ -1,14 +1,11 @@
+
+
 ${Ansi.BLUE}         *****  *****  *****  *****  *****
 ${Ansi.BLUE}         *   *  *      *   *  *      *
 ${Ansi.BLUE}         *****  *****  *****  *      *****
 ${Ansi.BLUE}         *      *      *   *  *      *
 ${Ansi.BLUE}         *      *****  *   *  *****  *****
-  __     __      ___
- |__|  ||__|_  ||   
-||  || ||   || ||
-||  || ||___|| ||___
 
-		                   _  | | | |
-		                  |_|_|_|_| |
-			
+		Sometimes, all we have control of is ourselves. 
+	
 ${Ansi.RED} :: Spring Boot${spring-boot.formatted-version} :: ${Ansi.DEFAULT}
