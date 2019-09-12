@@ -1,12 +1,11 @@
-${Ansi.BLUE}         $$$$$$$$$$  $$$           $$$$$$$$$$$$
-${Ansi.BLUE}         $$$$$$$$$$  $$$           $$$$$$$$$$$$
-${Ansi.BLUE}                $$$  $$$           $$$      $$$
-${Ansi.BLUE}                $$$  $$$           $$$
-${Ansi.BLUE}         $$$$$$$$$$  $$$$$$$$$$$$  $$$    
-${Ansi.BLUE}         $$$$$$$$$$  $$$$$$$$$$$$  $$$    
-${Ansi.BLUE}         $$$    $$$  $$$      $$$  $$$
-${Ansi.BLUE}         $$$    $$$  $$$      $$$  $$$      $$$       
-${Ansi.BLUE}         $$$    $$$  $$$$$$$$$$$$  $$$$$$$$$$$$       
-${Ansi.BLUE}         $$$$$$$$$$  $$$$$$$$$$$$  $$$$$$$$$$$$
 
+
+${Ansi.BLUE}         *****  *****  *****  *****  *****
+${Ansi.BLUE}         *   *  *      *   *  *      *
+${Ansi.BLUE}         *****  *****  *****  *      *****
+${Ansi.BLUE}         *      *      *   *  *      *
+${Ansi.BLUE}         *      *****  *   *  *****  *****
+
+		Sometimes, all we have control of is ourselves. 
+	
 ${Ansi.RED} :: Spring Boot${spring-boot.formatted-version} :: ${Ansi.DEFAULT}

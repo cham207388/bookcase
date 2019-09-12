@@ -85,11 +85,8 @@ public class AuthorServiceImpl implements AuthorService {
 
 	@Override
 	public Author findById(int id) {
-		Optional<Author> authorOptional = this.authorRepository.findById(id);
-		if (!authorOptional.isPresent()) {
-			throw new AuthorNotFoundException("No author with id= " + id);
-		}
-		return authorOptional.get();
+		return authorRepository.findById(id)
+				.orElseThrow(()->new AuthorNotFoundException(""));
 	}
 
 	@Override

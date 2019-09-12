@@ -13,7 +13,7 @@ HELP.md
 
 ### file ###
 application.properties
-
+**.log
 ### IntelliJ IDEA ###
 .idea
 *.iws
@@ -32,4 +32,4 @@ application.properties
 .vscode/
 
 ### DB credentials ###
-#/resources/
+/resources/
