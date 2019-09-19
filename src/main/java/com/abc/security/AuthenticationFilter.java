@@ -9,6 +9,11 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.abc.SpringApplicationContext;
+import com.abc.entity.Author;
+import com.abc.service.AuthorService;
+import com.abc.service.impl.AuthorServiceImpl;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -24,6 +29,7 @@ import io.jsonwebtoken.SignatureAlgorithm;
 
 import static com.abc.security.SecurityConstants.*;
 
+@Slf4j
 public class AuthenticationFilter extends UsernamePasswordAuthenticationFilter {
 
 	private final AuthenticationManager authenticationManager;
@@ -55,14 +61,16 @@ public class AuthenticationFilter extends UsernamePasswordAuthenticationFilter {
 			HttpServletResponse response, 
 			FilterChain chain, 
 			Authentication auth) throws IOException, ServletException {
-		String userName = ((User)auth.getPrincipal()).getUsername();
+		String email = ((User)auth.getPrincipal()).getUsername();
 		
 		String token = Jwts.builder()
-			.setSubject(userName)
+			.setSubject(email)
 			.setExpiration(new Date(System.currentTimeMillis() + EXPIRATION_TIME))
 			.signWith(SignatureAlgorithm.HS512, getTokenSecret())
 			.compact();
-		
-		response.addHeader(getHeaderString(), TOKEN_PREFIX+token);
+		AuthorServiceImpl authorService = (AuthorServiceImpl) SpringApplicationContext.getBean("authorServiceImpl");
+		Author author = authorService.findByEmail(email);
+		response.addHeader(getHeaderString(), getTokenPrefix()+token);
+		response.addHeader("userEmail", email);
 	}
 }

@@ -138,4 +138,9 @@ public class AuthorServiceImpl implements AuthorService {
 		}
 		return authorResponses;
 	}
+
+	@Override
+	public Author findByEmail(String email) {
+		return authorRepository.findByEmail(email);
+	}
 }

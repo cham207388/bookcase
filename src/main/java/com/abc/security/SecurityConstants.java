@@ -24,5 +24,15 @@ public class SecurityConstants {
 	}
 	public static String getTokenSecret() {
 		return appProperties.getTokenSecret();
-	}	
+	}
+	public static String getTokenPrefix() {
+		return appProperties.getTokenPrefix();
+	}
+	public static String getHeaderEmail() {
+		return appProperties.getHeaderEmail();
+	}
+	public static String getLoggingEmail() {
+		return appProperties.getLoggingEmail();
+	}
+
 }

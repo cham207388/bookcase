@@ -36,6 +36,7 @@ public class WebSecurity extends WebSecurityConfigurerAdapter{
 		.antMatchers(HttpMethod.PUT, PUT_URL).permitAll()
 		.and()
 		.addFilter(new AuthenticationFilter(authenticationManager()))
+		.addFilter(new AuthorizationFilter(authenticationManager()))
 		.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
 		http.headers().frameOptions().disable();
 	}
@@ -43,6 +44,5 @@ public class WebSecurity extends WebSecurityConfigurerAdapter{
 	@Override
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
 		auth.userDetailsService(userDetailsService).passwordEncoder(bCryptPasswordEncoder);
-	}	
-
+	}
 }
