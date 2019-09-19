@@ -23,7 +23,8 @@ public class WebSecurity extends WebSecurityConfigurerAdapter{
 	
 	@Override
 	public void configure(HttpSecurity http) throws Exception{
-		http.csrf().disable().authorizeRequests()
+		http.csrf().disable();
+		http.authorizeRequests()
 		.antMatchers(HttpMethod.POST, POST_URL).permitAll()
 		.antMatchers(HttpMethod.POST, POST_ALL_URL).permitAll()
 		.antMatchers(HttpMethod.POST, SHUTDOWN).permitAll()
@@ -33,10 +34,10 @@ public class WebSecurity extends WebSecurityConfigurerAdapter{
 		.antMatchers(HttpMethod.GET, GET_ALL_URL).permitAll()
 		.antMatchers(HttpMethod.GET, CONSOLE_URL).permitAll()
 		.antMatchers(HttpMethod.PUT, PUT_URL).permitAll()
-		.anyRequest().authenticated()
 		.and()
 		.addFilter(new AuthenticationFilter(authenticationManager()))
 		.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
+		http.headers().frameOptions().disable();
 	}
 	
 	@Override
