@@ -19,4 +19,6 @@ public interface AuthorService extends UserDetailsService{
 	public Author updateAuthorDeleteBook(int id, Book book);
 	public ResponseEntity<Void> deleteById(int id);
 	public List<AuthorResponse> findAuthors(int page, int limit);
+
+    Author findByEmail(String email);
 }

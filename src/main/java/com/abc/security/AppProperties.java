@@ -11,10 +11,23 @@ public class AppProperties {
 	private Environment env;
 	
 	public String getHeaderString() {
-		return env.getProperty("headerString");
+
+		return env.getProperty("header.string");
 	}
 
 	public String getTokenSecret() {
-		return env.getProperty("tokenSecret");
+		return env.getProperty("token.secret");
+	}
+
+    public String getTokenPrefix() {
+		return env.getProperty("token.prefix");
+    }
+
+	public String getHeaderEmail() {
+		return env.getProperty("header.email");
+	}
+
+	public String getLoggingEmail() {
+		return env.getProperty("login.email");
 	}
 }
