@@ -10,12 +10,9 @@ public class SecurityConstants {
 	public final static String GET_URL = "/author";
 	public final static String SWAGGER_API = "/**";
 	public final static String SWAGGER_UI = "/**swagger**";
-	public final static String DELETE_URL = "/author";
 	public final static String PUT_URL = "/author";
 	public final static String GET_ALL_URL = "/authors";
-	public final static String CONSOLE_URL = "/h2-console";
 	public final static String SHUTDOWN = "/shutdownContext";
-	public static final String TOKEN_PREFIX = "Bearer ";
 	
 	static AppProperties appProperties = (AppProperties) SpringApplicationContext.getBean("appProperties");
 	

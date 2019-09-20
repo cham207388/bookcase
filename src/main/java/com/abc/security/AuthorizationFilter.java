@@ -1,6 +1,5 @@
 package com.abc.security;
 
-import com.abc.exception.AuthorNotFoundException;
 import io.jsonwebtoken.Jwts;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.authentication.AuthenticationManager;
