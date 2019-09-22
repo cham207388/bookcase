@@ -20,7 +20,7 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 @Controller
 @EnableSwagger2
 public class SwaggerConfig {
-	public static final Contact DEFAULT_CONTACT = new Contact("Alhagie Bai", "website", "cham207388@gmail.com");
+	public static final Contact DEFAULT_CONTACT = new Contact("Alhagie Bai Cham", "website", "cham207388@gmail.com");
 	public static final ApiInfo DEFAULT_API_INFO = new ApiInfo("Bookcase API", "Electronic bookcase", "1.0",
 			"urn:tos", DEFAULT_CONTACT, "Apache 2.0", "http://www.apache.org/licenses/LICENSE-2.0");
 	private static final Set<String> DEFAULT_PRODUCES_AND_CONSUMES = new HashSet<String>(
