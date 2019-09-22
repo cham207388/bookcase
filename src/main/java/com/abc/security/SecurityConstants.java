@@ -5,13 +5,11 @@ import com.abc.SpringApplicationContext;
 public class SecurityConstants {
 	
 	public static final long EXPIRATION_TIME = 864000000; // 10 days
-	public final static String POST_URL = "/author";
-	public final static String POST_ALL_URL = "/authors";
-	public final static String GET_URL = "/author";
-	public final static String SWAGGER_API = "/**";
-	public final static String SWAGGER_UI = "/**swagger**";
-	public final static String PUT_URL = "/author";
-	public final static String GET_ALL_URL = "/authors";
+	public final static String SWAGGER_API = "/v2/**";
+	public final static String SWAGGER_UI = "/swagger-ui.html**";
+	public final static String SAVE_AUTHOR = "/author";
+	public final static String SAVE_AUTHORS = "/authors";
+	public final static String GET_AUTHORS = "/authors";
 	public final static String SHUTDOWN = "/shutdownContext";
 	
 	static AppProperties appProperties = (AppProperties) SpringApplicationContext.getBean("appProperties");

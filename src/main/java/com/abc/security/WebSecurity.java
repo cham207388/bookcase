@@ -25,14 +25,12 @@ public class WebSecurity extends WebSecurityConfigurerAdapter{
 	public void configure(HttpSecurity http) throws Exception{
 		http.csrf().disable();
 		http.authorizeRequests()
-		.antMatchers(HttpMethod.POST, POST_URL).permitAll()
-		.antMatchers(HttpMethod.POST, POST_ALL_URL).permitAll()
+		.antMatchers(HttpMethod.POST, SAVE_AUTHOR).permitAll()
+		.antMatchers(HttpMethod.POST, SAVE_AUTHORS).permitAll()
 		.antMatchers(HttpMethod.POST, SHUTDOWN).permitAll()
-		.antMatchers(HttpMethod.GET, GET_URL).permitAll()
 		.antMatchers(HttpMethod.GET, SWAGGER_UI).permitAll()
 		.antMatchers(HttpMethod.GET, SWAGGER_API).permitAll()
-		.antMatchers(HttpMethod.GET, GET_ALL_URL).permitAll()
-		.antMatchers(HttpMethod.PUT, PUT_URL).permitAll()
+		.antMatchers(HttpMethod.GET, GET_AUTHORS).permitAll()
 		.and()
 		.addFilter(new AuthenticationFilter(authenticationManager()))
 		.addFilter(new AuthorizationFilter(authenticationManager()))
