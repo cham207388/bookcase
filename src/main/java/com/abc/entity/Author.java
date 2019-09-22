@@ -38,8 +38,7 @@ public class Author {
 	
 	@Id
 	@Column(nullable=false, name="id")
-	@SequenceGenerator(sequenceName="author_seq", name="a_seq")
-	@GeneratedValue(generator="a_seq", strategy=GenerationType.SEQUENCE)
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Integer id;
 	
 	@Column(nullable=false, name="first_name")
@@ -67,9 +66,10 @@ public class Author {
 	private String password;
 	
 	@OneToMany(cascade = CascadeType.ALL,
-			fetch = FetchType.LAZY) //this might change to EAGER
+			fetch = FetchType.EAGER) //this might change to EAGER
 	@JoinColumn(name="author_id")
 	@JsonManagedReference
+	@ApiModelProperty("List of books")
 	private List<Book> books = new ArrayList<Book>();
 	
 

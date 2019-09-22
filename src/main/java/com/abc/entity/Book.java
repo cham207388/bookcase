@@ -38,8 +38,7 @@ public class Book {
 	
 	@Id
 	@Column(name = "id", nullable = false, unique=true)
-	@SequenceGenerator(sequenceName = "book_seq", name = "b_seq")
-	@GeneratedValue(generator = "b_seq", strategy = GenerationType.SEQUENCE)
+	@GeneratedValue(strategy = GenerationType.SEQUENCE)
 	private Integer id;
 
 	@Column(name = "isbn", nullable = false)

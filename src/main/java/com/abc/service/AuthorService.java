@@ -13,9 +13,12 @@ import com.abc.response.AuthorResponse;
 public interface AuthorService extends UserDetailsService{
 	
 	public ResponseEntity<AuthorResponse> save(Author author);
+	public ResponseEntity<List<AuthorResponse>> saveAll(List<Author> author);
 	public List<AuthorResponse> findAll();
 	public Author findById(int id);
 	public Author updateAuthorDeleteBook(int id, Book book);
 	public ResponseEntity<Void> deleteById(int id);
 	public List<AuthorResponse> findAuthors(int page, int limit);
+
+    Author findByEmail(String email);
 }

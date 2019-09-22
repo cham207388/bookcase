@@ -74,14 +74,6 @@ class AuthorServiceImplTest {
 			);		
 	}
 	
-	@Test
-	void testSave() {
-		when(authorRepository.save(any())).thenReturn(author);
-		when(bCryptPasswordEncoder.encode(anyString())).thenReturn(encodedPassword);
-		
-		assertEquals("201 Created", authorService.save(storedAuthor));
-	}
-	
 	@AfterEach
 	void tearDown() throws Exception{
 		author = null;

@@ -1,4 +1,4 @@
-/*package com.abc.security;
+package com.abc.security;
 
 import java.io.IOException;
 import java.sql.Date;
@@ -9,6 +9,11 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.abc.SpringApplicationContext;
+import com.abc.entity.Author;
+import com.abc.service.AuthorService;
+import com.abc.service.impl.AuthorServiceImpl;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -22,10 +27,13 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 
+import static com.abc.security.SecurityConstants.*;
+
+@Slf4j
 public class AuthenticationFilter extends UsernamePasswordAuthenticationFilter {
 
 	private final AuthenticationManager authenticationManager;
-
+	
 	public AuthenticationFilter(AuthenticationManager authenticationManager) {
 		this.authenticationManager = authenticationManager;
 	}
@@ -53,17 +61,16 @@ public class AuthenticationFilter extends UsernamePasswordAuthenticationFilter {
 			HttpServletResponse response, 
 			FilterChain chain, 
 			Authentication auth) throws IOException, ServletException {
-		String userName = ((User)auth.getPrincipal()).getUsername();
+		String email = ((User)auth.getPrincipal()).getUsername();
 		
 		String token = Jwts.builder()
-			.setSubject(userName)
-			.setExpiration(new Date(System.currentTimeMillis() + SecurityConstants.EXPIRATION_TIME))
-			.signWith(SignatureAlgorithm.HS512, SecurityConstants.TOKEN_SECRET)
+			.setSubject(email)
+			.setExpiration(new Date(System.currentTimeMillis() + EXPIRATION_TIME))
+			.signWith(SignatureAlgorithm.HS512, getTokenSecret())
 			.compact();
-		
-		response.addHeader(
-				SecurityConstants.HEADER_STRING, SecurityConstants.TOKEN_SECRET+token);
+		AuthorServiceImpl authorService = (AuthorServiceImpl) SpringApplicationContext.getBean("authorServiceImpl");
+		Author author = authorService.findByEmail(email);
+		response.addHeader(getHeaderString(), getTokenPrefix()+token);
+		response.addHeader("userEmail", email);
 	}
-
 }
-*/

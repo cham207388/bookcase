@@ -7,6 +7,10 @@ import java.util.Set;
 import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Controller;
 
+import com.abc.SpringApplicationContext;
+
+import springfox.documentation.builders.PathSelectors;
+import springfox.documentation.builders.RequestHandlerSelectors;
 import springfox.documentation.service.ApiInfo;
 import springfox.documentation.service.Contact;
 import springfox.documentation.spi.DocumentationType;
@@ -24,7 +28,18 @@ public class SwaggerConfig {
 
 	@Bean
 	public Docket api() {
-		return new Docket(DocumentationType.SWAGGER_2).apiInfo(DEFAULT_API_INFO).produces(DEFAULT_PRODUCES_AND_CONSUMES)
-				.consumes(DEFAULT_PRODUCES_AND_CONSUMES);
+		return new Docket(DocumentationType.SWAGGER_2)
+				.produces(DEFAULT_PRODUCES_AND_CONSUMES)
+				.consumes(DEFAULT_PRODUCES_AND_CONSUMES)
+				.select()
+				.apis(RequestHandlerSelectors.any())
+				.paths(PathSelectors.any())
+				.build()
+				.apiInfo(DEFAULT_API_INFO);
 	}
+	
+	@Bean
+	public SpringApplicationContext springApplicationContext() {
+        return new SpringApplicationContext();
+    }
 }

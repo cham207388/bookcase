@@ -7,6 +7,7 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import static com.abc.security.SecurityConstants.*;
 
 import com.abc.service.AuthorService;
 
@@ -22,22 +23,26 @@ public class WebSecurity extends WebSecurityConfigurerAdapter{
 	
 	@Override
 	public void configure(HttpSecurity http) throws Exception{
-		http.csrf().disable()
-		.authorizeRequests()
-		.antMatchers(HttpMethod.POST, SecurityConstants.BASE_URL).authenticated()
-		.anyRequest()
-		.permitAll()
+		http.csrf().disable();
+		http.authorizeRequests()
+		.antMatchers(HttpMethod.POST, POST_URL).permitAll()
+		.antMatchers(HttpMethod.POST, POST_ALL_URL).permitAll()
+		.antMatchers(HttpMethod.POST, SHUTDOWN).permitAll()
+		.antMatchers(HttpMethod.GET, GET_URL).permitAll()
+		.antMatchers(HttpMethod.GET, SWAGGER_UI).permitAll()
+		.antMatchers(HttpMethod.GET, SWAGGER_API).permitAll()
+		.antMatchers(HttpMethod.GET, GET_ALL_URL).permitAll()
+		.antMatchers(HttpMethod.GET, CONSOLE_URL).permitAll()
+		.antMatchers(HttpMethod.PUT, PUT_URL).permitAll()
 		.and()
-		.httpBasic()
-		.and()
+		.addFilter(new AuthenticationFilter(authenticationManager()))
+		.addFilter(new AuthorizationFilter(authenticationManager()))
 		.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
-		
-		//.addFilter(new AuthenticationFilter(authenticationManager()));
+		http.headers().frameOptions().disable();
 	}
 	
 	@Override
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
 		auth.userDetailsService(userDetailsService).passwordEncoder(bCryptPasswordEncoder);
-	}	
-
+	}
 }
