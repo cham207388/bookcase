@@ -23,7 +23,7 @@ import com.abc.entity.Author;
 import com.abc.entity.Book;
 import com.abc.exception.AuthorNotFoundException;
 import com.abc.repo.AuthorRepository;
-import com.abc.response.AuthorResponse;
+import com.abc.model.response.AuthorResponse;
 import com.abc.service.AuthorService;
 
 @Service
@@ -137,6 +137,14 @@ public class AuthorServiceImpl implements AuthorService {
 			authorResponse = null;
 		}
 		return authorResponses;
+	}
+
+	@Override
+	public AuthorResponse findResponseByid(int id) {
+		Optional<Author> optionalAuthor = authorRepository.findById(id);
+		AuthorResponse authorResponse = new AuthorResponse();
+		BeanUtils.copyProperties(optionalAuthor.get(), authorResponse);
+		return authorResponse;
 	}
 
 	@Override

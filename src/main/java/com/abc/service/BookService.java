@@ -7,7 +7,7 @@ import org.springframework.http.ResponseEntity;
 
 import com.abc.entity.Book;
 import com.abc.entity.BookUpdate;
-import com.abc.response.BookResponse;
+import com.abc.model.response.BookResponse;
 
 public interface BookService {
 	List<Book> findAll();

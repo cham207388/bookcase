@@ -1,4 +1,4 @@
-package com.abc.response;
+package com.abc.model.response;
 
 import java.util.List;
 

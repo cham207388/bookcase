@@ -27,7 +27,7 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import com.abc.entity.Author;
 import com.abc.entity.Book;
 import com.abc.exception.BookNotFoundException;
-import com.abc.response.AuthorResponse;
+import com.abc.model.response.AuthorResponse;
 import com.abc.service.AuthorService;
 import com.abc.service.BookService;
 
@@ -70,8 +70,8 @@ public class AuthorController {
 		return this.authorService.findAll();
 	}
 
-	@GetMapping(path = "/author/id/{id}", produces = { MediaType.APPLICATION_XML_VALUE,
-			MediaType.APPLICATION_JSON_VALUE })
+	@GetMapping(path = "/author/id/{id}",
+			produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
 	public Resource<AuthorResponse> findById(@PathVariable int id) {
 		log.info("Author with {} is searched", id);
 		Author author = this.authorService.findById(id);
@@ -124,10 +124,17 @@ public class AuthorController {
 		this.authorService.deleteById(id);
 	}
 
-	@GetMapping(path = "/authors")
+	@GetMapping(path = "/pagination",
+			produces = { MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_JSON_VALUE })
 	public List<AuthorResponse> findAuthors(@RequestParam(value = "page", defaultValue = "0") int page,
 			@RequestParam(value = "limit", defaultValue = "5") int limit) {
 		log.info("implementing pagination");
 		return this.authorService.findAuthors(page, limit);
+	}
+
+	@GetMapping(path = "/response/{id}",
+			produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
+	public AuthorResponse getResponse(@PathVariable int id){
+		return authorService.findResponseByid(id);
 	}
 }

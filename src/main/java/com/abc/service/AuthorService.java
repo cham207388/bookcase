@@ -7,18 +7,20 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 
 import com.abc.entity.Author;
 import com.abc.entity.Book;
-import com.abc.response.AuthorResponse;
+import com.abc.model.response.AuthorResponse;
 
 
 public interface AuthorService extends UserDetailsService{
 	
-	public ResponseEntity<AuthorResponse> save(Author author);
-	public ResponseEntity<List<AuthorResponse>> saveAll(List<Author> author);
-	public List<AuthorResponse> findAll();
-	public Author findById(int id);
-	public Author updateAuthorDeleteBook(int id, Book book);
-	public ResponseEntity<Void> deleteById(int id);
-	public List<AuthorResponse> findAuthors(int page, int limit);
+	ResponseEntity<AuthorResponse> save(Author author);
+	ResponseEntity<List<AuthorResponse>> saveAll(List<Author> author);
+	List<AuthorResponse> findAll();
+	Author findById(int id);
+	Author updateAuthorDeleteBook(int id, Book book);
+	ResponseEntity<Void> deleteById(int id);
+	List<AuthorResponse> findAuthors(int page, int limit);
+	AuthorResponse findResponseByid(int id);
+
 
     Author findByEmail(String email);
 }

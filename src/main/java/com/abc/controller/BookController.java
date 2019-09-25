@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.abc.entity.Author;
 import com.abc.entity.Book;
-import com.abc.response.BookResponse;
+import com.abc.model.response.BookResponse;
 import com.abc.service.AuthorService;
 import com.abc.service.BookService;
 

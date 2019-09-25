@@ -16,7 +16,7 @@ import org.springframework.stereotype.Service;
 import com.abc.entity.Book;
 import com.abc.entity.BookUpdate;
 import com.abc.repo.BookRepository;
-import com.abc.response.BookResponse;
+import com.abc.model.response.BookResponse;
 import com.abc.service.BookService;
 
 @Service
