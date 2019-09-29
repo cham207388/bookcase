@@ -1,18 +1,9 @@
 package com.abc.security;
 
-import java.io.IOException;
-import java.sql.Date;
-import java.util.ArrayList;
-
-import javax.servlet.FilterChain;
-import javax.servlet.ServletException;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
-import com.abc.SpringApplicationContext;
-import com.abc.entity.Author;
-import com.abc.service.AuthorService;
-import com.abc.service.impl.AuthorServiceImpl;
+import com.abc.model.request.UserLoginRequestModel;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import io.jsonwebtoken.Jwts;
+import io.jsonwebtoken.SignatureAlgorithm;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -21,11 +12,12 @@ import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
-import com.abc.model.request.UserLoginRequestModel;
-import com.fasterxml.jackson.databind.ObjectMapper;
-
-import io.jsonwebtoken.Jwts;
-import io.jsonwebtoken.SignatureAlgorithm;
+import javax.servlet.FilterChain;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
+import java.sql.Date;
+import java.util.ArrayList;
 
 import static com.abc.security.SecurityConstants.*;
 
@@ -60,7 +52,7 @@ public class AuthenticationFilter extends UsernamePasswordAuthenticationFilter {
 			HttpServletRequest request, 
 			HttpServletResponse response, 
 			FilterChain chain, 
-			Authentication auth) throws IOException, ServletException {
+			Authentication auth) {
 		String email = ((User)auth.getPrincipal()).getUsername();
 		
 		String token = Jwts.builder()
@@ -68,8 +60,7 @@ public class AuthenticationFilter extends UsernamePasswordAuthenticationFilter {
 			.setExpiration(new Date(System.currentTimeMillis() + EXPIRATION_TIME))
 			.signWith(SignatureAlgorithm.HS512, getTokenSecret())
 			.compact();
-		AuthorServiceImpl authorService = (AuthorServiceImpl) SpringApplicationContext.getBean("authorServiceImpl");
-		Author author = authorService.findByEmail(email);
+		//AuthorServiceImpl authorService = (AuthorServiceImpl) SpringApplicationContext.getBean("authorServiceImpl");
 		response.addHeader(getHeaderString(), getTokenPrefix()+token);
 		response.addHeader("userEmail", email);
 	}
