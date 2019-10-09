@@ -12,8 +12,4 @@ public class BookcaseApplication {
 		SpringApplication.run(BookcaseApplication.class, args);
 	}
 	
-	@Bean
-	public BCryptPasswordEncoder bCryptPasswordEncoder() {
-		return new BCryptPasswordEncoder();
-	}
 }
