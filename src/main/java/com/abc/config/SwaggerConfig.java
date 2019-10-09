@@ -53,8 +53,4 @@ public class SwaggerConfig {
 		return new HashSet<>(
 				Arrays.asList("application/json", "application/xml"));
 	}
-	@Bean
-	public SpringApplicationContext springApplicationContext() {
-		return new SpringApplicationContext();
-	}
 }
