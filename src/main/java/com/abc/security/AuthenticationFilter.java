@@ -62,6 +62,6 @@ public class AuthenticationFilter extends UsernamePasswordAuthenticationFilter {
 			.compact();
 		//AuthorServiceImpl authorService = (AuthorServiceImpl) SpringApplicationContext.getBean("authorServiceImpl");
 		response.addHeader(getHeaderString(), getTokenPrefix()+token);
-		response.addHeader("userEmail", email);
+		response.addHeader(getHeaderEmail(), email);
 	}
 }

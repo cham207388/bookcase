@@ -39,7 +39,7 @@ public class Author {
     private String lastName;
 
     @Column(name = "email", unique = true)
-    @NotNull(message = "email cannot be null")
+    @NotNull(message = "email required")
     @Email
     @Pattern(regexp = "[A-Za-z0-9._%-+]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,4}")
     @ApiModelProperty(notes = "Email must follow proper format")
